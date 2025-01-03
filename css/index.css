@@ -1,5 +1,8 @@
 :root{
     font-size: 14px;
+    --green-light: #4bff2f;
+    --green-light-hover: #7ef36c;
+    --green-dark: #28e10b;
 }
 
 *{
@@ -7,7 +10,7 @@
     border: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: "Ubuntu", Arial, Helvetica, sans-serif;
 }
 
 html,body{
@@ -27,6 +30,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #fff;
 }
 
 header{
@@ -76,42 +80,84 @@ menu li{
 
 .home{
     width: 100%;
-    padding: 0 40px;
+    padding: 0 40px 40px 40px;
     display: flex;
-    column-gap: 40px;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: clamp(40px, 50vw, 80px);
 }
 
 .home > img{
-    width: 80vw;
-    max-width: 400px;
-    min-width: 100px;
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
 }
 
 .home > div{
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .home > div > h1{
-    width: 500px;
-    padding: 40px;
+    margin: 0 0 20px 0;
+    padding: 60px 40px 40px 60px;
+    width: 600px;
     font-size: 4rem;
     font-weight: bolder;
     background-image: url(../src/detalhe.svg);
     background-repeat: no-repeat;
 }
 
-.home > div > h2{
-    padding: 40px;
+.home > div > div{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.home > div > div > h2{
     font-size: 1.5rem;
     font-weight: lighter;
+    font-style: italic;
+}
+
+.home > div > div > button{
+    padding: 10px 0;
+    width: 20vw;
+    max-width: 300px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+    font-size: 1.5rem;
+    color: #fff;
+    background: var(--green-dark);
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+}
+
+.home > div > div > button:hover{
+    background: var(--green-light-hover);
+}
+
+.home > div > div > button::after{
+    content: "→";
+    font-size: 2rem;
+}
+
+@media (max-width: 1000px){
+    .home > div > div{
+        margin: 0 0 0 7vw;
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+    }
 }
 
 @media (max-width: 900px){
     .home{
-        margin: 40px 0 0 0;
         flex-direction: column-reverse;
         align-items: center;
     }
@@ -130,11 +176,23 @@ menu li{
     .home > div > h2{
         display: none;
     }
+
+    .home > div > div{
+        width: 50%;
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    .home > div > div > button{
+        padding: 10px 40px;
+        width: auto;
+        max-width: none;
+        justify-content: space-between;
+    }
 }
 
 .section_information{
     width: 100%;
-    margin: 40px 0 0 0;
     padding: 0 40px;
     display: flex;
     justify-content: space-between;
@@ -145,7 +203,7 @@ menu li{
     width: 30vw;
     max-width: 250px;
     min-width: 150px;
-    font-size: 7rem;
+    font-size: clamp(4rem, 7vw, 8rem);
     text-transform: uppercase;
     word-break: break-all;
 }
@@ -156,11 +214,12 @@ menu li{
 }
 
 .section_information > div > p{
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 0 20px 0;
     padding: 20px;
     font-size: 1.5rem;
     font-weight: lighter;
+    line-height: 30px;
 }
 
 .exp_area{
@@ -194,7 +253,8 @@ menu li{
 }
 
 .exp > p{
-    font-size: 1rem;
+    font-size: 1.1rem;
+    line-height: 22px;
 }
 
 .techs_exp{
@@ -219,7 +279,7 @@ menu li{
     .exp_area > span{
         width: 50%;
         border-right: 0;
-        border-bottom: 5px solid rgb(75, 255, 47);
+        border-bottom: 5px solid #4bff2f;
         font-size: 2rem;
     }
     
@@ -229,14 +289,19 @@ menu li{
     }
 }
 
+.section_information.experiencia > span{
+    color: #c4c4c4;
+    font-weight: bold;
+}
+
 .section_information.formacao{
     padding: 40px 40px 150px 40px;
     background-color: #0f0f0f;
 }
 
-.section_information.formacao
-> span{
-    color: #fff;
+.section_information.formacao > span{
+    color: #ffffffb7;
+    font-weight: bold;
 }
 
 .section_information.formacao > div > p{
@@ -248,7 +313,7 @@ menu li{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    column-gap: 20px;
+    justify-content: space-evenly;
     row-gap: 20px;
 }
 
@@ -266,7 +331,6 @@ menu li{
 }
 
 .estudo{
-    width: 230px;
     padding: 30px;
     background: #222;
 }
@@ -321,9 +385,11 @@ footer > div > p{
 }
 
 .contatos p{
+    width: 100%;
     margin: 10px 0;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #ffffffcf;
+    text-align: right;
 }
 
 footer > p{
